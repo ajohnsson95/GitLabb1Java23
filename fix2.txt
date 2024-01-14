@@ -1,0 +1,45 @@
+cd .\Documents\GitHub
+git init GitLabb
+ls -force
+cd GitLabb
+New-Item -ItemType File -Path "README.md" -Force
+git add . 
+git commit -m "Initial commit"
+Add-Content -Path "README.md" -Value "duck" -Force
+git add README.md
+git commit -m "Added duck text to README.md"
+Add-Content -Path "README.md" -Value "moose" -Force
+Add-Content -Path "README.md" -Value "cat" -Force
+git add README.md
+git commit -m "Added text moose, cat to README.md"
+git checkout -b feature1
+Add-Content -Path "README.md" -Value "dog" -Force
+(Get-Content -Path "README.md") -replace 'moose', 'mouse' | Set-Content -Path "README.md" -Force
+git add .
+git commit -m "Added dog to text and replaced moose with mouse"
+git switch main
+(Get-Content -Path "README.md") -replace 'moose', 'mahmut' | Set-Content -Path "README.md" -Force
+git add .
+git commit -m "Changed text in README.md from moose to mahmut on main branch"
+git merge feature1
+#Git merge conflict fixed by Removing "<<<<<<< HEAD, =======, >>>>>>> feature1" from README.md file
+git add README.md
+git merge --continue
+git tag extinct 
+git reset --hard HEAD^
+git branch feature2
+$content = Get-Content -Path "README.md"
+$content = $content | ForEach-Object { $_.Substring(0,1).ToUpper() + $_.Substring(1) }
+$content | Set-Content -Path "README.md" -Force
+git add README.md
+git commit -m "All animals will now begin with a capitalized letter"
+git switch feature2
+New-Item -ItemType File -Name "fix1.txt" -force
+git add fix1.txt
+git commit -m "Added file fix1.txt"
+New-Item -ItemType File -Name "fix2.txt" -force
+git add fix2.txt
+git commit -m "Added file fix2.txt"
+git switch main
+git log
+git cherry-pick 475b9cd
