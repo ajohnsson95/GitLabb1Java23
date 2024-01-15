@@ -49,3 +49,15 @@ git commit -m "Added code to get to this point in fix2.txt textfile"
 git remote add origin https://github.com/ajohnsson95/GitLabb1Java23.git
 git push --all origin
 git push origin extinct
+git switch main
+git tag -a v1.0 -m "Version 1.0"
+git push origin v1.0
+git rebase -i HEAD~2
+pick <first-commit>
+squash <second-commit>
+git push origin main --force
+git checkout -b feature3
+git add fix2.txt
+git commit -m "Add commands for steps 18, 19 in fix2.txt"
+git checkout main
+git merge --no-ff feature3 -m "Merge feature3: Add commands for steps 18, 19 in fix2.txt"
