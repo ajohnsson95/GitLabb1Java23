@@ -43,3 +43,9 @@ git commit -m "Added file fix2.txt"
 git switch main
 git log
 git cherry-pick 475b9cd
+#Added code to get to this point in fix2.txt text file then 
+git add fix2.txt
+git commit -m "Added code to get to this point in fix2.txt textfile"
+git remote add origin https://github.com/ajohnsson95/GitLabb1Java23.git
+git push --all origin
+git push origin extinct
